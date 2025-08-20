@@ -6,8 +6,6 @@ const askBot = async (req, res) => {
     try{
         const {qnaCode, question} = req.body;
 
-        console.log(qnaCode, question);
-
         if (!qnaCode?.trim() || !question?.trim()){
             return res.status(400).json({
                 statusCode : 400,
