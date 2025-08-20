@@ -4,7 +4,7 @@ import connectToDB from "./db/index.js"
 
 connectToDB()
 .then(()=>{
-    app.listen(PORT, () => {
+    app.listen(PORT || 8000, () => {
         console.log(`Server app running on PORT ${PORT}`);
     })
 })
