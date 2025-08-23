@@ -5,7 +5,7 @@ import {getPdfContent} from "../Utils/pdfContent.js";
 const createQna = async (req, res) => {
 
     try{
-        const {description} = req.body;
+        const {name, description} = req.body;
         let finalDescription = description;
 
         if (!description.trim()){
@@ -30,6 +30,7 @@ const createQna = async (req, res) => {
         }
 
         const newQna = await qnas.create({
+            name,
             description : finalDescription,
             uniqueCode: uuid(),
         })
