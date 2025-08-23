@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import {conf} from "../config/config.js";
 import Markdown from "react-markdown";
+import toast from "react-hot-toast";
 
 const Qna = () => {
 
@@ -49,7 +50,7 @@ const Qna = () => {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(uniquecode);
+    navigator.clipboard.writeText(qnaCode);
     toast.success("QnA code copied to clipboard!");
   }
 
@@ -64,7 +65,7 @@ const Qna = () => {
       </div>
 
       {/* Chat Messages */}
-      <div className="flex-1 mt-5 min-h-0 overflow-y-auto p-4 space-y-3">
+      <div className="flex-1 mt-5 min-h-0 overflow-y-auto overflow-x-hidden p-4 space-y-3">
         {messages.map((msg, index) => (
           <div
             key={index}

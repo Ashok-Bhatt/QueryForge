@@ -2,7 +2,7 @@
 
 :root {
   --bg: 255 255 255;           /* white (background) */
-  --bg-secondary: 243 244 246; /* light gray (secondary background) */
+  --bg-secondary: 223 224 226; /* light gray (secondary background) */
   --text: 0 0 0;               /* black (text) */
   --primary: 59 130 246;       /* blue (primary accent) */
   --secondary: 107 114 128;    /* gray (secondary accent) */
@@ -16,13 +16,13 @@
   --secondary: 156 163 175;    /* light gray (secondary accent) */
 }
 
-    /* Hide scrollbar in Chrome, Safari, and Opera */
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
+/* Hide scrollbar in Chrome, Safari, and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
 
-    /* Hide scrollbar in IE, Edge, and Firefox */
-    .no-scrollbar {
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
-    }
+/* Hide scrollbar in IE, Edge, and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
