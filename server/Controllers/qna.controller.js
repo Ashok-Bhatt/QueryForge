@@ -18,7 +18,7 @@ const createQna = async (req, res) => {
         }
 
         if (req?.files?.attachments){
-            if (!Array.isArray(req.files)){
+            if (!Array.isArray(req.files.attachments)){
                 const pdfContent = await getPdfContent(req.files.attachments);
                 finalDescription = finalDescription + "\n\n" + pdfContent;
             } else {

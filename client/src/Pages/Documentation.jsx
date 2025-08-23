@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {GetStarted, DocsQnas} from "../Components/export.js";
 
 function Documentation() {
-  const [activeTab, setActiveTab] = useState("getStarted");
+  const [activeTab, setActiveTab] = useState(localStorage.getItem("activeDocTab") || "getStarted");
+
+  useEffect(()=>{
+    localStorage.setItem("activeDocTab", activeTab);
+  }, [activeTab]);
 
   return (
     <div className="flex-grow bg-[rgb(var(--bg))] text-[rgb(var(--text))] px-6 py-8 overflow-y-auto">

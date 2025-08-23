@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Documentation, PreviousQnas, Qna, NewQna, PageNotFound } from './Pages/export.js'
+import { Documentation, PreviousQnas, Qna, NewQna, PageNotFound, LandingPage } from './Pages/export.js'
 import { ThemeProvider } from './Contexts/themeContext.jsx'
 
 const router = createBrowserRouter(
@@ -13,6 +13,10 @@ const router = createBrowserRouter(
       children: [
         {
           path: "/",
+          element: <LandingPage/>
+        },
+        {
+          path: "/qna/new",
           element: <NewQna/>,
         },
         {

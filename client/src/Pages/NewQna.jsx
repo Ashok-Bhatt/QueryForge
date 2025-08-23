@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {toast} from 'react-hot-toast';
 import axios from "axios";
 import { conf } from "../config/config.js";
+import { Paperclip } from "lucide-react";
 
 function NewQna() {
   const [qnaName, setQnaName] = useState("");
   const [qnaDescription, setQnaDescription] = useState("");
   const [attachments, setAttachments] = useState([]);
+  const fileRef = useRef(null);
 
   const handleFileChange = (e) => {
     setAttachments(Array.from(e.target.files));
   };
+
+  const chooseFiles = () => {
+    fileRef.current.click();
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,7 +29,9 @@ function NewQna() {
     const formData = new FormData();
     formData.append("name", qnaName);
     formData.append("description", qnaDescription);
-    formData.append("attachments", attachments);
+    attachments.forEach(file => {
+      formData.append("attachments", file);
+    });
 
     axios.post(`${conf.serverBaseURL}/api/v1/qna/`, formData)
     .then((res) => {
@@ -44,12 +52,12 @@ function NewQna() {
   };
 
   return (
-    <div className="min-h-screen bg-[rgb(var(--bg))] text-[rgb(var(--text))] px-6 py-8">
+    <div className="flex-grow bg-[rgb(var(--bg))] text-[rgb(var(--text))] px-6 py-8 text-center">
       <h1 className="text-2xl font-bold mb-6">Create New QnA</h1>
 
       <form
         onSubmit={handleSubmit}
-        className="max-w-lg mx-auto p-6 rounded-xl shadow-md bg-[rgb(var(--bg))] border border-[rgb(var(--secondary))]"
+        className="flex-grow max-w-lg mx-auto p-6 rounded-xl shadow-md bg-[rgb(var(--bg))] border border-[rgb(var(--secondary))] overflow-y-auto text-left"
       >
         {/* QnA Name */}
         <div className="mb-4">
@@ -81,34 +89,41 @@ function NewQna() {
           />
         </div>
 
-        {/* File Attachments */}
-        <div className="mb-4">
-          <label className="block font-semibold mb-2" htmlFor="attachments">
-            File Attachments
-          </label>
-          <input
-            id="attachments"
-            type="file"
-            multiple
-            onChange={handleFileChange}
-            className="w-full"
-          />
-          {attachments.length > 0 && (
-            <ul className="mt-2 text-sm text-[rgb(var(--secondary))]">
-              {attachments.map((file, idx) => (
-                <li key={idx}>{file.name}</li>
-              ))}
-            </ul>
-          )}
+        {/* File Attachments and send button */}
+        <div className="mt-10">
+          <div className="flex gap-2">
+            <button
+              onClick={chooseFiles}
+              type="button"
+              className="p-2 text-[rgb(var(--text))] bg-[rgb(var(--bg-secondary))] rounded-xl hover:opacity-90 hover:cursor-pointer">
+                <Paperclip />
+            </button>
+            <input
+              id="attachments"
+              type="file"
+              accept=".pdf"
+              ref={fileRef}
+              multiple
+              onChange={handleFileChange}
+              className="hidden w-full"
+            />
+            <button
+              type="submit"
+              className="w-full py-2 px-4 rounded-lg bg-[rgb(var(--primary))] text-[rgb(var(--bg))] font-semibold hover:opacity-90 transition hover:cursor-pointer"
+            >
+              Create QnA
+            </button>
+          </div>
+          <div className="">
+            {attachments.length > 0 && (
+              <ul className="flex flex-wrap gap-x-5 gap-y-1 mt-2 text-sm text-[rgb(var(--secondary))]">
+                {attachments.map((file, idx) => (
+                  <li key={idx}>{file.name}</li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full py-2 px-4 rounded-lg bg-[rgb(var(--primary))] text-[rgb(var(--bg))] font-semibold hover:opacity-90 transition"
-        >
-          Create QnA
-        </button>
       </form>
     </div>
   );

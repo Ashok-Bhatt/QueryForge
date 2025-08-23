@@ -21,7 +21,7 @@ function PreviousQnas() {
               <QnaCard
                 key={idx}
                 name={qna.name}
-                description={qna.description}
+                description={qna.description.slice(0, 100) + (qna.description.length > 100 ? "..." : "")}
                 uniquecode={qna.uniqueCode}
               />
             ))}
