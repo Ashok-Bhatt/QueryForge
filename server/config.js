@@ -6,4 +6,5 @@ export const {
     GEMINI_API_KEY,
     MONGODB_URI,
     CORS_ORIGIN,
+    BROWSERLESS_TOKEN,
 } = process.env;

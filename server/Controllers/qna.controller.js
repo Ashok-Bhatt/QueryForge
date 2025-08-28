@@ -7,6 +7,7 @@ const createQna = async (req, res) => {
     try{
         const {name, description} = req.body;
         let finalDescription = description;
+        const maxSize = 5*1024*1024;
 
         if (!description.trim()){
             return res.status(400).json({
@@ -19,12 +20,19 @@ const createQna = async (req, res) => {
 
         if (req?.files?.attachments){
             if (!Array.isArray(req.files.attachments)){
-                const pdfContent = await getPdfContent(req.files.attachments);
-                finalDescription = finalDescription + "\n\n" + pdfContent;
+                if (req.files.attachments.mimetype=="application/pdf" && req.files.attachments.size<=maxSize){
+                    const pdfContent = await getPdfContent(req.files.attachments);
+                    finalDescription = finalDescription + "\n\n" + pdfContent; 
+                }
             } else {
-                for (let i=0; i<req.files.attachments.length; i++){
-                    const pdfContent = await getPdfContent(req.files.attachments[i]);
-                    finalDescription = finalDescription + "\n\n" + pdfContent;
+                for (let i=0; i<Math.min(req.files.attachments.length, 5); i++){
+                    if (req.files.attachments[i].mimetype=="application/pdf" && req.files.attachments[i].size<=maxSize){
+                        const pdfContent = await getPdfContent(req.files.attachments[i]);
+                        finalDescription = finalDescription + "\n\n" + pdfContent;
+                        console.log(`Accepted: ${i}`);
+                    } else {
+                        console.log(`Rejected: ${i}`);
+                    }
                 }
             }
         }

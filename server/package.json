@@ -13,6 +13,7 @@
   "description": "",
   "dependencies": {
     "@google/genai": "^1.13.0",
+    "@sparticuz/chromium-min": "^138.0.2",
     "axios": "^1.11.0",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
@@ -24,6 +25,7 @@
     "mongoose": "^8.17.1",
     "multer": "^2.0.2",
     "pdf-parse": "^1.1.1",
+    "puppeteer-core": "^24.17.0",
     "uuid": "^11.1.0"
   }
 }

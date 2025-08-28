@@ -45,9 +45,9 @@ function NewQna() {
         toast.error("Failed to create QnA. Please try again.");
     })
     .finally(() => {
-        setQnaName("");
-        setQnaDescription("");
-        setAttachments([]);
+        // setQnaName("");
+        // setQnaDescription("");
+        // setAttachments([]);
     });
   };
 
