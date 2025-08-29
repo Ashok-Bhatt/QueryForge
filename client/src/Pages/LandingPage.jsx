@@ -32,8 +32,8 @@ function LandingPage() {
 						<p className="text-sm text-[rgb(var(--text))]">Upload PDFs and let QueryForge extract and answer from your content.</p>
 					</div>
 					<div className="p-6 rounded-lg shadow bg-[rgb(var(--bg))] border border-[rgb(var(--secondary))]">
-						<h3 className="font-bold text-[rgb(var(--primary))] mb-2">Easy Management</h3>
-						<p className="text-sm text-[rgb(var(--text))]">Track, revisit, and organize all your QnA sessions in one place.</p>
+						<h3 className="font-bold text-[rgb(var(--primary))] mb-2">Web Crawling</h3>
+						<p className="text-sm text-[rgb(var(--text))]">Attach link of the websites you want to crawl</p>
 					</div>
 				</div>
 			</section>

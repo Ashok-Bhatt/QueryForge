@@ -70,6 +70,14 @@ const qnas = [
         answer: "Yes, you can upload up to 5 files, each with a maximum size of 5MB."
     }, 
     {
+        question: "Can we crawl any website?",
+        answer: "No, some websites use strong bot detectors. In that case, we wont't br able to fetch the data from provided URL. So, it is recommended to test the qna bot created before using it",
+    },
+    {
+        question: "How many URLs can I fetch at once?",
+        answer: "Just like pdfs, we have limited the number of URLs to 5 to prevent the exploitation of the resources."
+    },
+    {
         question: "How long does it take to create a QnA bot?",
         answer: "The creation process usually takes a few seconds, depending on the size and number of files uploaded."
     },

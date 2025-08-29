@@ -3,12 +3,14 @@ import {toast} from 'react-hot-toast';
 import axios from "axios";
 import { conf } from "../config/config.js";
 import { Paperclip } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function NewQna() {
   const [qnaName, setQnaName] = useState("");
   const [qnaDescription, setQnaDescription] = useState("");
   const [attachments, setAttachments] = useState([]);
   const fileRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     setAttachments(Array.from(e.target.files));
@@ -39,15 +41,16 @@ function NewQna() {
         const userQnas = JSON.parse(localStorage.getItem("userQnas")) || [];
         localStorage.setItem("userQnas", JSON.stringify([...userQnas, res.data.data]));
         toast.success("QnA created successfully!");
+        navigate(`/qna/${res.data.data.uniqueCode}`);
     })
     .catch((err) => {
         console.error("Error creating QnA:", err);
         toast.error("Failed to create QnA. Please try again.");
     })
     .finally(() => {
-        // setQnaName("");
-        // setQnaDescription("");
-        // setAttachments([]);
+        setQnaName("");
+        setQnaDescription("");
+        setAttachments([]);
     });
   };
 
