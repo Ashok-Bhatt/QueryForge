@@ -24,6 +24,8 @@ const respondToQuestion = async (context, promptText) => {
     },
   });
 
+  responseText = responseText + response.text;
+
   if (response.functionCalls && response.functionCalls.length>0){
     for (let i=0; i<response.functionCalls.length; i++){
       const {name, args} = response.functionCalls[i];
@@ -39,8 +41,6 @@ const respondToQuestion = async (context, promptText) => {
       
       responseText = responseText + finalResponse.text;
     }
-  } else {
-    responseText = responseText + response.text;
   }
 
   return responseText;
